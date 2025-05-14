@@ -4,10 +4,18 @@ import com.example.gameoflife.model.Board;
 import com.example.gameoflife.model.Cell;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping("/api/life")
 public class GameOfLifeController {
+
+    @GetMapping("/time")
+    public String getCurrentTime() {
+        LocalDateTime now = LocalDateTime.now();
+        return now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+    }
 
     @PostMapping("/next")
     public boolean[][] getNextGeneration(@RequestBody boolean[][] inputGrid) {
